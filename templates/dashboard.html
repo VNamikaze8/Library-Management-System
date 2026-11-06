@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<p>Welcome to the Library Management System.</p>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>{{ total_books }}</h2>
+        <p>Total Books</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ total_students }}</h2>
+        <p>Registered Students</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ issued_books }}</h2>
+        <p>Currently Issued</p>
+    </div>
+
+</div>
+
+<div class="actions">
+    <a href="{{ url_for('books') }}">Manage Books</a>
+    <a href="{{ url_for('students') }}">Manage Students</a>
+    <a href="{{ url_for('issue') }}">Issue Books</a>
+    <a href="{{ url_for('return_book') }}">Return Books</a>
+</div>
+{% endblock %}

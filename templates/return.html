@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Return Books</h1>
+
+<table>
+    <tr>
+        <th>Book</th>
+        <th>Student</th>
+        <th>Issue Date</th>
+        <th>Due Date</th>
+        <th>Action</th>
+    </tr>
+
+    {% for item in issued_books %}
+    <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.issue_date }}</td>
+        <td>{{ item.due_date }}</td>
+        <td>
+            <a href="{{ url_for('process_return', id=item.id) }}"
+               onclick="return confirm('Confirm book return?')">
+                Return
+            </a>
+        </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5">No books currently issued.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

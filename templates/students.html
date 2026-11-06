@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Student Management</h1>
+
+<div class="form-container">
+    <h2>Register Student</h2>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Student Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="phone" placeholder="Phone Number">
+        <button type="submit">Register Student</button>
+    </form>
+</div>
+
+<h2>Registered Students</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+
+    {% for student in students %}
+    <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.phone }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">No students registered.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

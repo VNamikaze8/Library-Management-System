@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Book Management</h1>
+
+<div class="form-container">
+    <h2>Add New Book</h2>
+
+    <form method="POST">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <input type="text" name="category" placeholder="Category">
+        <input type="number" name="quantity" placeholder="Quantity" min="1" required>
+        <button type="submit">Add Book</button>
+    </form>
+</div>
+
+<h2>Search Books</h2>
+
+<form method="GET">
+    <input type="text" name="search" placeholder="Search title or author"
+           value="{{ search }}">
+    <button type="submit">Search</button>
+</form>
+
+<h2>Available Books</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Total</th>
+        <th>Available</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for book in books %}
+    <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.category }}</td>
+        <td>{{ book.quantity }}</td>
+        <td>{{ book.available }}</td>
+        <td>
+            <a href="{{ url_for('update_book', id=book.id) }}">Edit</a> |
+            <a href="{{ url_for('delete_book', id=book.id) }}"
+               onclick="return confirm('Delete this book?')">Delete</a>
+        </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="7">No books found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
